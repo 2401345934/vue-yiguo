@@ -1,0 +1,23 @@
+@import "base";
+@import "Vant";
+@import "reset";
+@import "mixin";
+@import "common";
+
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.clear:after {
+  content: "";
+  height: 0;
+  display: block;
+  overflow: hidden;
+  clear: both;
+  visibility: hidden;
+}
