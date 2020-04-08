@@ -9,6 +9,14 @@ import Vant from "vant";
 import "vant/lib/index.css";
 
 
+//引入 Mint ui
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+
+Vue.use(MintUI)
+//引入
+import "./utils/http"
+
 //引入全局样式
 import "./styles/main.scss";
 

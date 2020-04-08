@@ -9,6 +9,13 @@ module.exports = {
         pathRewrite: {    //解决动态服务器地址一样
           "^/api": ""    //这个是把 开头是/api 的替换成后边的值
         }
+      },
+      "/info": {     //请求 / ajax 开头   就会走 target 的值
+        target: "http://114.215.149.176:3000/api",
+        changeOrigin: true,  //是否改变了域名
+        pathRewrite: {    //解决动态服务器地址一样
+          "^/info": ""    //这个是把 开头是/api 的替换成后边的值
+        }
       }
     },
     overlay: {    //遮罩层
@@ -25,4 +32,4 @@ module.exports = {
     }
   },
   lintOnSave: false  //是否关闭eslint 检查  false 是关闭
-}
+};

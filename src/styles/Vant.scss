@@ -1,0 +1,61 @@
+.van-tree-select__nav {
+  width: 3.27rem !important;
+  height: 100%;
+  background: #f4f4f4;
+  overflow-y: scroll;
+  box-sizing: border-box;
+
+  a {
+    padding: .64rem 0rem .64rem 0;
+    text-align: center;
+    font-size: .42rem;
+    color: #333;
+    height: 1.7rem;
+    box-sizing: border-box;
+  }
+
+  .van-sidebar-item{
+    padding: .64rem 0rem .64rem 0;
+    text-align: center;
+    font-size: .42rem;
+    color: #333;
+    height: 1.7rem;
+    box-sizing: border-box;
+  }
+}
+
+.van-tree-select__content {
+  width: 100%;
+}
+
+.van-sidebar-item--select {
+  color: #11B57C;
+  border-left: .1rem solid #11B57C;
+}
+
+.van-tree-select {
+  height: 20rem !important;
+}
+
+
+//城市地方的样式
+.van-popup  {
+  height: 300px;
+
+}
+
+.van-action-sheet__header {
+  text-align: left;
+  padding-left: .5rem;
+  top: 0;
+}
+.van-action-sheet__close  {
+  display: none;
+}
+
+
+//详情
+.is-selected {
+  color: #11B57C !important;
+  border-color: #11B57C !important;
+}
