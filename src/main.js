@@ -8,6 +8,9 @@ import axios from "axios";
 import Vant from "vant";
 import "vant/lib/index.css";
 
+import _ from "lodash";
+
+Vue.prototype._ = _
 
 //引入 Mint ui
 import MintUI from 'mint-ui'

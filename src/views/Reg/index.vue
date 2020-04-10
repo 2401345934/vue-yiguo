@@ -43,7 +43,7 @@
     },
     methods: {
       login() {
-        instance2.post("/login", {
+        instance2.post("/api/login", {
           username: this.username,
           password: this.password
         }).then((res) => {
@@ -59,7 +59,7 @@
         });
       },
       onSubmit(values) {
-        instance2.post("/reg", {
+        instance2.post("/api/reg", {
           username: this.username,
           password: this.password
         }).then((res) => {

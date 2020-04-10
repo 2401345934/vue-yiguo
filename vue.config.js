@@ -3,15 +3,8 @@ module.exports = {
     open: true,   //自动打开浏览器
     port: 8888,    //随便改端口号
     proxy: {
-      "/api": {     //请求 / ajax 开头   就会走 target 的值
-        target: "https://b2capigateway.yiguo.com",
-        changeOrigin: true,  //是否改变了域名
-        pathRewrite: {    //解决动态服务器地址一样
-          "^/api": ""    //这个是把 开头是/api 的替换成后边的值
-        }
-      },
       "/info": {     //请求 / ajax 开头   就会走 target 的值
-        target: "http://114.215.149.176:3000/api",
+        target: "http://114.215.149.176:3000",
         changeOrigin: true,  //是否改变了域名
         pathRewrite: {    //解决动态服务器地址一样
           "^/info": ""    //这个是把 开头是/api 的替换成后边的值

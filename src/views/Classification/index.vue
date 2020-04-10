@@ -4,7 +4,7 @@
     <div class="search">
       <div class="search-c">
         <i class="i1"></i>
-        <input type="text" v-model="value">
+        <input type="text" v-model="value" @keydown.enter="searchValue">
         <i class="i2" v-show="value" @click="handlerValue"></i>
       </div>
       <span class="txt">搜索</span>
@@ -39,10 +39,10 @@
 <script>
   import { instance } from "@/utils/http";
   import Vue from "vue";
-  import { TreeSelect, Toast } from "vant";
+  import { TreeSelect, Toast , Notify } from "vant";
   import { mapGetters, mapState, mapMutations } from "vuex";
-
   Vue.use(Toast);
+  Vue.use(Notify);
   Vue.use(TreeSelect);
   export default {
     name: "index",
@@ -53,10 +53,21 @@
         list: [],
         items: [],
         activeId: 1,
-        activeIndex: 0
+        activeIndex: 0,
+        searchArr:[], //跟输入框所匹配的东西
       };
     },
     methods: {
+      searchValue(){
+        //把他们分类中  名字和输入框名字 一样的过滤出来
+        let obj = _.filter(this.searchArr, (item, index) => item.CategoryName === this.value);
+        if (obj.length === 0) {
+          Toast.fail('抱歉你所搜索的商品暂时没有');
+        } else {
+          this.setId(obj[0]);
+          this.$router.push("/details");
+        };
+      },
       ...mapMutations("details", ["setId"]),
       handlerValue() {
         this.value = "";
@@ -99,6 +110,7 @@
           });
           this.list.push(item.Childs);
         });
+        this.searchArr = _.flattenDeep(this.list)
       });
     }
   };

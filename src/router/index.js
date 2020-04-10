@@ -25,6 +25,11 @@ const routes = [
     component: () => import("@/views/City/index.vue")
   },
   {
+    path: "/product",
+    name: "Product",
+    component: () => import("@/views/Product/index.vue")
+  },
+  {
     path: "/nav",
     name: "Nav",
     component: () => import("@/views/Nav/index.vue"),
@@ -39,6 +44,11 @@ const routes = [
         path: "/my",
         name: "My",
         component: () => import("@/views/My/index.vue")
+      },
+      {
+        path: "/bigimg",
+        name: "Bigimg",
+        component: () => import("@/views/Bigimg/index.vue")
       },
       {
         path: "/shopping",

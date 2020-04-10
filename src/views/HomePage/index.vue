@@ -33,7 +33,7 @@
 
     <!--椭圆图-->
     <div class="first-screen" v-if="navBottomImg.length > 0">
-      <img :src="navBottomImg.pictureUrl" alt="" >
+      <img :src="navBottomImg.pictureUrl" alt="">
     </div>
 
 
@@ -56,6 +56,34 @@
       </div>
     </div>
 
+    <!--大图片-->
+    <div class="group" v-if="isFlag">
+      <a href="javascript:;" class="group-t" >
+        <img :src="twoDataList[1].adPictures[0].pictureUrl" alt="">
+      </a>
+      <div class="group-list">
+        <div class="in">
+          <div class="item" v-for="item in twoDataList[1].commoditysComponentList" :key="item.commodityComponentId">
+            <div class="pic">
+              <a href="javascript:;">
+                <img :src="item.pictureUrl" alt="">
+              </a>
+            </div>
+            <div class="info">
+              <p class="name">
+                <a href="javascript:;">{{item.commodityName}}</a>
+              </p>
+              <div class="price">
+                <strong>¥{{item.commodityPrice}}</strong>
+                <i></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <!--占位符-->
     <div style="height: 50px;"></div>
   </div>
@@ -75,15 +103,12 @@
     name: "index",
     data() {
       return {
-        // bannerList: null,
-        // navList: null,
-        // navBottomImg: null,
-        // news: null,
-        // imgList: []
+        toDataList: [],
+
       };
     },
     methods: {
-      ...mapActions("home",["setDataList"])
+      ...mapActions("home", ["setDataList", "setErDataList"])
     },
     beforeCreate() {
       const tost = Toast.loading({
@@ -95,37 +120,109 @@
       });
     },
     computed: {
-      ...mapState("home",["ctiy"]),
-      ...mapGetters("home",["dataList","navBottomImg","news","bannerList","imgList"])
+      ...mapState("home", ["ctiy"]),
+      ...mapGetters("home", ["dataList", "navBottomImg", "news", "bannerList", "imgList", "twoDataList","isFlag"])
     },
     created() {
-     this.setDataList()
+      this.setDataList();
 
-      // instance.post("/api/home/TemplateComponent/GetTemplateComponentInfo", {
-      //   "head": {
-      //     version: "h5",
-      //     cityCode: "2",
-      //     cityId: "eabbe02f-59e0-46e6-90e7-cd8a89dbb98f",
-      //     districtId: "c1153b9b-b21e-4761-9daf-99735a87f8d8",
-      //     token: "",
-      //     loginToken: ""
-      //   },
-      //   body: {
-      //     previewTime: "",
-      //     operationType: 1,
-      //     pageIndex: 1,
-      //     homePageId: "55a2d0a1-98ab-43e9-90c8-825a54c6f06b",
-      //     publishTime: "2020/04/08 13:38:47"
-      //   }
-      // }).then((res) => {
-      //   console.log(res.data.Data);
-      //   this.imgList.push(res.data.Data.templateComponentList[0].adPictures[0].pictureUrl);
-      // });
+      window.onscroll = () => {
+        if (document.documentElement.scrollTop >= 100) {
+          this.setErDataList();
+          window.onscroll = null;
+          console.log(this.twoDataList);
+        };
+
+      };
     }
   };
 </script>
 
 <style scoped lang="scss">
+
+  .group {
+    width: 100%;
+    background: #fff;
+    position: relative;
+    .group-t {
+      width: 100%;
+      height: 7.2rem;
+      img {
+        width: 100%;
+        height: 7.2rem;
+      }
+    }
+    .group-list {
+      overflow: hidden;
+      width: 100%;
+      .in {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        box-sizing: border-box;
+        width: 100%;
+        padding-bottom: .2rem;
+        white-space: nowrap;
+        padding-left: .53rem;
+        .item {
+          display: inline-block;
+          background: #fff;
+          margin-right: .33rem;
+          border-radius: .2rem;
+          box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+          vertical-align: middle;
+          .pic {
+            position: relative;
+            a {
+              display: inline-block;
+              img {
+                width: 4.11rem;
+                height: 4.11rem;
+                border-radius: .2rem .2rem 0 0;
+              }
+            }
+          }
+          .info {
+            box-sizing: border-box;
+            width: 4.11rem;
+            text-align: left;
+            padding-left: 0;
+            padding: .27rem;
+            .name {
+              font-size: 11px;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              a {
+                color: #333;
+              }
+            }
+            .price {
+              margin-top: .13rem;
+              height: .66rem;
+              line-height: .66rem;
+              font-size: 11px;
+              strong {
+                margin-right: .1rem;
+                font-size: .36rem;
+                font-weight: bold;
+                color: #fb3d3d;
+                font-size: .4rem;
+              }
+              i {
+                width: .66rem;
+                height: .66rem;
+                background: url(//img07.yiguoimg.com/d/web/190514/00193/172123/ksgw.png) no-repeat;
+                background-size: 100% 100%;
+                float: right;
+                border-radius: 50%;
+                background-color: #01b27a;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 
   .one-image {
     margin-top: -.3rem;
@@ -256,7 +353,9 @@
       text-align: center;
       font-size: .46rem;
       color: #fff;
-
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       i {
         display: inline-block;
         width: .24rem;

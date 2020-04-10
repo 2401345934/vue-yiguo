@@ -39,9 +39,12 @@
 
 
 //城市地方的样式
-.van-popup  {
+//.van-popup  {
+//  height: 300px;
+//
+//}
+.van-popup--safe-area-inset-bottom{
   height: 300px;
-
 }
 
 .van-action-sheet__header {
@@ -58,4 +61,15 @@
 .is-selected {
   color: #11B57C !important;
   border-color: #11B57C !important;
+}
+
+//数量
+.van-stepper {
+  display: inline-block;
+  margin-left: .35rem;
+}
+
+//星星
+.van-rate {
+
 }

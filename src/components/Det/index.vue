@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="product" v-for="item in list" :key="item.CommodityId">
+    <div class="product" v-for="item in list" :key="item.CommodityId" @click="handlerC(item)">
       <div class="img">
         <img :src="item.SmallPic" alt="">
       </div>
@@ -10,7 +10,7 @@
         <p class="price">
           <span class="span1">¥{{item.SellPrice}}</span>
           <span class="span2">{{item.Spec}}</span>
-          <span class="span3"></span>
+          <span class="span3" @click.stop="dataData(item)"></span>
         </p>
       </div>
     </div>
@@ -20,7 +20,15 @@
 <script>
   export default {
     name: "index",
-    props:["list"]
+    props:["list","parmas"],
+    methods: {
+      handlerC(item){
+        this.$emit('addData',item)
+      },
+      dataData(item){
+        this.parmas(item)
+      },
+    }
   };
 </script>
 
